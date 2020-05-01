@@ -32,11 +32,12 @@ height:100%;
 }
 #presentation-space{
 flex:1;
+display: flex;
 width:80%;
 background-color: rgb(213, 226, 226);
 }
 #drawing-space-wrapper{
-  height:100%;
+  width:90%;
 }
 #drawing-space{
   height:100%;
@@ -44,4 +45,60 @@ background-color: rgb(213, 226, 226);
 canvas{
   width: 100%;
   height:100%;
+}
+#object-wrapper{
+  width: 10%;
+}
+#object-selector{
+  display: grid;
+  grid-template-columns: repeat(2, 50%) ;
+  width:100%;
+  height:20%;
+  background-color: white ;
+}
+.shape{
+  border: black 1px solid;
+  cursor: pointer;
+  height:100%;
+  width: 100%;
+  font-size: 1rem;
+}
+#object-selector-fill{
+  background-color: white ;
+  height:80%;
+}
+.square {
+  width: 100px;
+  height: 100px;
+  background: red;
+}
+
+.rectangle {
+  width: 200px;
+  height: 100px;
+  background: red;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 50%
+}
+.triangle-up {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red;
+  position: absolute;
+}
+.parallelogram {
+  width: 150px;
+  height: 100px;
+  transform: skew(20deg);
+  background: red;
+}
+.abs{
+
 }
