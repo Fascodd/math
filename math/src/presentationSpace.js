@@ -15,12 +15,23 @@ class PresentationSpace extends React.Component {
         }
         this.addShape = this.addShape.bind(this);
     }
-    addShape(e) {
+    addShape = (e) => {
+        e.persist();
         let canvas = document.getElementById("drawing-space-wrapper");
         let div = document.createElement("div");
         div.classList = e.target.id;
         canvas.appendChild(div);
-        div.addEventListener("mousedown", ()=>console.log("mousedown"))
+
+        div.addEventListener("mousedown", () => {
+            window.addEventListener('mousemove', function movingPointer(e) {
+                // for testing
+                console.log(e.clientX);
+                //
+                window.addEventListener('mouseup', () => window.removeEventListener('mousemove', movingPointer))
+            })
+
+        });
+        let shapeBoundClient = div.getBoundingClientRect();
     }
     render() {
 
