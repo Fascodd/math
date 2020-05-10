@@ -11,7 +11,7 @@ class PresentationSpace extends React.Component {
             { id: 5, classes: "shape", img: "triangle", shape: "triangle-up" },
             ],
             shapeStorage: [],
-
+            mouseDown: false,
         }
         this.addShape = this.addShape.bind(this);
     }
@@ -27,13 +27,17 @@ class PresentationSpace extends React.Component {
         div.addEventListener("mousedown", (q) => {
             let mouseDown = true;
             if (q.button == 0) {
+                this.setState(state => { return { mouseDown: !state.mouseDown } })
                 window.addEventListener('mousemove', function movingPointer(e) {
                     div.style.left = `${e.clientX - (div.getBoundingClientRect().width / 2)}px`;
                     div.style.top = `${e.clientY - (div.getBoundingClientRect().height / 2)}px`;
                     if (!mouseDown) { window.removeEventListener('mousemove', movingPointer) }
                 })
             }
-            window.addEventListener("mouseup", () => mouseDown = false)
+            window.addEventListener("mouseup", () => {
+                mouseDown = false;
+                this.setState(state => { return { mouseDown: !state.mouseDown } })
+            })
         });
         let shapeBoundClient = div.getBoundingClientRect();
     }
