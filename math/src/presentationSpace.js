@@ -19,17 +19,21 @@ class PresentationSpace extends React.Component {
         e.persist();
         let canvas = document.getElementById("drawing-space-wrapper");
         let div = document.createElement("div");
+        const drawingSpace = document.getElementById('drawing-space');
         div.classList = e.target.id;
         canvas.appendChild(div);
-
-        div.addEventListener("mousedown", () => {
-            window.addEventListener('mousemove', function movingPointer(e) {
-                // for testing
-                console.log(e.clientX);
-                //
-                window.addEventListener('mouseup', () => window.removeEventListener('mousemove', movingPointer))
-            })
-
+        div.style.left = `${drawingSpace.getBoundingClientRect().width / 2 + document.getElementById('drawing-space').getBoundingClientRect().left - div.getBoundingClientRect().width / 2}px`;
+        div.style.top = `${drawingSpace.getBoundingClientRect().height / 2 + document.getElementById('drawing-space').getBoundingClientRect().top - div.getBoundingClientRect().height / 2}px`;
+        div.addEventListener("mousedown", (q) => {
+            let mouseDown = true;
+            if (q.button == 0) {
+                window.addEventListener('mousemove', function movingPointer(e) {
+                    div.style.left = `${e.clientX - (div.getBoundingClientRect().width / 2)}px`;
+                    div.style.top = `${e.clientY - (div.getBoundingClientRect().height / 2)}px`;
+                    if (!mouseDown) { window.removeEventListener('mousemove', movingPointer) }
+                })
+            }
+            window.addEventListener("mouseup", () => mouseDown = false)
         });
         let shapeBoundClient = div.getBoundingClientRect();
     }

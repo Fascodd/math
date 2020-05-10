@@ -10,7 +10,8 @@ class App extends React.Component {
         }
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
+        //Canvas code from a forum on Stack Overflow-- editted to fit the needs of the app
         // create canvas element and append it to document body
         var canvas = document.createElement('canvas');
         document.getElementById("drawing-space").appendChild(canvas);
@@ -78,9 +79,9 @@ class App extends React.Component {
         var pos = { x: 0, y: 0 };
 
         window.addEventListener('resize', resize);
-        document.addEventListener('mousemove', draw);
-        document.addEventListener('mousedown', setPosition);
-        document.addEventListener('mouseenter', setPosition);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mousedown', setPosition);
+        canvas.addEventListener('mouseenter', setPosition);
 
         // new position from mouse event
         function setPosition(e) {
@@ -113,22 +114,28 @@ class App extends React.Component {
         }
     }
     render() {
+        let list = ['g', 'g', 'g', 'a', 'a', 'b', 'c',
+         'd', 'e', 'f', 'g', 'h', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'a', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'g', 'g', 'g', 'g']
 
+        const gridStyle = {
+            gridTemplateColumns: `repeat(${list.length / 2},${200 / list.length - .01}%)`
+        }
         return (
             <div id="container" >
                 {/* Typing area */}
                 <div id="typing-wrapper">
-
                     {/* Fill in this array from a grid*/}
-                    <div id="symbol-grid">
+                    {/*Dynamically changes based on number of symbols*/}
+                    <div style={gridStyle} id="symbol-grid">
+                        {list.map((symbol) => <div className="symbol-wrapper">{symbol}</div>)}
                     </div>
                     <div id="typing-area">
-                        <textarea id="typing-box" type="text"> 3x + 3 +4 =4</textarea>
+                        <textarea id="typing-box" type="text" style={{resize:"none"}}> 3x + 3 +4 =4</textarea>
                     </div>
                 </div>
 
                 {/* Presentation space*/}
-                <PresentationSpace/>
+                <PresentationSpace />
             </div>
         )
     }
