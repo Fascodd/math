@@ -1,5 +1,6 @@
 import React from 'react';
 import PresentationSpace from './presentationSpace.js'
+import CartesianPlot from './cartesianPlot.js'
 import './App.css';
 
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
         var pos = { x: 0, y: 0 };
 
         window.addEventListener('resize', resize);
+        // need to set this to only be true when not moving shape
         canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mousedown', setPosition);
         canvas.addEventListener('mouseenter', setPosition);
@@ -81,12 +83,13 @@ class App extends React.Component {
                         {list.map((symbol) => <div className="symbol-wrapper">{symbol}</div>)}
                     </div>
                     <div id="typing-area">
-                        <textarea id="typing-box" type="text" style={{ resize: "none" }}> 3x + 3 +4 =4</textarea>
+                        <textarea id="typing-box" type="text" style={{ resize: "none" }}> text</textarea>
                     </div>
                 </div>
 
                 {/* Presentation space*/}
                 <PresentationSpace />
+                <CartesianPlot/>
             </div>
         )
     }

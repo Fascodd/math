@@ -26,7 +26,7 @@ class PresentationSpace extends React.Component {
         div.style.top = `${drawingSpace.getBoundingClientRect().height / 2 + document.getElementById('drawing-space').getBoundingClientRect().top - div.getBoundingClientRect().height / 2}px`;
         div.addEventListener("mousedown", (q) => {
             let mouseDown = true;
-            if (q.button == 0) {
+            if (q.button === 0) {
                 this.setState(state => { return { mouseDown: !state.mouseDown } })
                 window.addEventListener('mousemove', function movingPointer(e) {
                     div.style.left = `${e.clientX - (div.getBoundingClientRect().width / 2)}px`;
@@ -56,6 +56,7 @@ class PresentationSpace extends React.Component {
                     <div id="object-selector-fill" />
                 </div>
                 <div id="drawing-space-wrapper">
+                    <div id="graph-container"></div>
                     <div id="drawing-space">
 
                     </div>
