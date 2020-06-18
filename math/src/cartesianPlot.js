@@ -9,9 +9,9 @@ class CartensianPlot extends React.Component {
         this.cartesianPlot = this.cartesianPlot.bind(this);
         this.ToggleGraph = this.ToggleGraph.bind(this);
     }
-    ToggleGraph(){
+    ToggleGraph() {
         const canvas_plot = document.getElementById("graph-container");
-        canvas_plot.style.display === "none" ? canvas_plot.style.display = "block" :  canvas_plot.style.display     = "none";
+        canvas_plot.style.display === "none" ? canvas_plot.style.display = "block" : canvas_plot.style.display = "none";
     }
     cartesianPlot() {
         let getWidth = (object) => object.getBoundingClientRect().width;
@@ -34,7 +34,17 @@ class CartensianPlot extends React.Component {
         graphContainter.appendChild(canvas_plot);
         canvas_plot.id = "canvas-plot";
         const ctx_plot = canvas_plot.getContext('2d');
+        canvas_plot.width = window.innerWidth;
+        canvas_plot.height = window.innerHeight;
+        ctx_plot.beginPath();
+        let centerX = canvas_plot.getBoundingClientRect().width;
+        let centerY = canvas_plot.getBoundingClientRect().height;
 
+        ctx_plot.moveTo(centerX, centerY)
+        for (let i = -200; i < 200; i++) {
+            ctx_plot.lineTo(centerX + i*10, centerY + (-1 * (Math.sin(i)*10)));
+        }
+        ctx_plot.stroke();
 
 
     }
@@ -45,7 +55,7 @@ class CartensianPlot extends React.Component {
 
         return (
             <span>
-                <button onClick ={this.ToggleGraph}>Toggle Graph</button>
+                <button onClick={this.ToggleGraph}>Toggle Graph</button>
 
             </span>
 
