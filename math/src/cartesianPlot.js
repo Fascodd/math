@@ -12,12 +12,13 @@ class CartensianPlot extends React.Component {
     ToggleGraph() {
         const canvas_plot = document.getElementById("graph-container");
         canvas_plot.style.display === "none" ? canvas_plot.style.display = "block" : canvas_plot.style.display = "none";
+        
     }
+
     cartesianPlot() {
         let getWidth = (object) => object.getBoundingClientRect().width;
         let getHeight = (object) => object.getBoundingClientRect().height
         let diff = (container, object) => container - object;
-
         const canvas_plot = document.createElement('canvas');
         const graphContainter = document.getElementById("graph-container");
         const dsWrapper = document.getElementById('drawing-space-wrapper');
@@ -34,29 +35,47 @@ class CartensianPlot extends React.Component {
         graphContainter.appendChild(canvas_plot);
         canvas_plot.id = "canvas-plot";
         const ctx_plot = canvas_plot.getContext('2d');
-        canvas_plot.width = window.innerWidth;
-        canvas_plot.height = window.innerHeight;
+        canvas_plot.width = window.innerWidth / 2;
+        canvas_plot.height = window.innerHeight / 2;
         ctx_plot.beginPath();
-        let centerX = canvas_plot.getBoundingClientRect().width;
-        let centerY = canvas_plot.getBoundingClientRect().height;
-
-        ctx_plot.moveTo(centerX, centerY)
-        for (let i = -200; i < 200; i++) {
-            ctx_plot.lineTo(centerX + i*10, centerY + (-1 * (Math.sin(i)*10)));
+        let centerX = canvas_plot.getBoundingClientRect().width / 2;
+        let centerY = canvas_plot.getBoundingClientRect().height / 2;
+        // graphing start
+        let start = 0
+        let end = 4
+        let x = start
+        let amp = 10
+        let funString = document.getElementById("typing-box").textContent
+        function convert(string) {
+            let something = string.split("")
+            something.forEach((str, i, arr) => str == "x" ? arr[i] = x : "")
+            something = something.join("")
+            return eval(something)
         }
-        ctx_plot.stroke();
-
+        function PlotGraph() {
+            ctx_plot.moveTo(centerX + start * amp, centerY - convert(funString) * amp)
+            for (x = start; x < end; x = x + .1) {
+                ctx_plot.lineTo(centerX + x * amp, centerY + (-1 * convert(funString) * amp));
+            }
+            ctx_plot.stroke();
+            // -- graphing end
+        }
+        PlotGraph()
 
     }
     componentDidMount() {
         this.cartesianPlot();
+        //document.getElementById("graph-container").style.display = "none"
+    }
+    componentDidUpdate() {
+        this.cartesianPlot();
     }
     render() {
-
+        
         return (
             <span>
                 <button onClick={this.ToggleGraph}>Toggle Graph</button>
-
+                
             </span>
 
         )
