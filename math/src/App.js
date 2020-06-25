@@ -83,7 +83,7 @@ class App extends React.Component {
                         {list.map((symbol) => <div className="symbol-wrapper">{symbol}</div>)}
                     </div>
                     <div id="typing-area">
-                        <textarea id="typing-box" type="text" style={{ resize: "none" }}></textarea>
+                        <input id="typing-box" type="text" style={{ resize: "none" }}></input>
                     </div>
                 </div>
 
