@@ -67,8 +67,7 @@ class App extends React.Component {
         this.canvasDraw();
     }
     render() {
-        let list = ['g', 'g', 'g', 'a', 'a', 'b', 'c',
-            'd', 'e', 'f', 'g', 'h', 'g', 'g', 'g', 'g', 'g', 'g', 'g', 'a', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'g', 'g', 'g', 'g']
+        let list = ['π','sin(x)','cos(x)','tan(x)','sec(x)','cos(x)','cot(x)','log(x)','sq(x)','sqrt(x)','1/x','mod']
 
         const gridStyle = {
             gridTemplateColumns: `repeat(${list.length / 2},${200 / list.length - .01}%)`

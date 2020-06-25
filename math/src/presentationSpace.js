@@ -4,11 +4,11 @@ class PresentationSpace extends React.Component {
     constructor() {
         super();
         this.state = {
-            shapeArray: [{ id: 1, classes: "shape", img: "parallelogram", shape: "parallelogram" },
-            { id: 2, classes: "shape", img: "square", shape: "square" },
-            { id: 3, classes: "shape", img: "rectangle", shape: "rectangle" },
-            { id: 4, classes: "shape", img: "circle", shape: "circle" },
-            { id: 5, classes: "shape", img: "triangle", shape: "triangle-up" },
+            shapeArray: [{ id: 1, classes: "shape", img: "parallelogram", shape: "parallelogram", },
+            { id: 2, classes: "shape", img: "square", shape: "square", icon: "icon-sq" },
+            { id: 3, classes: "shape", img: "rectangle", shape: "rectangle", icon: "icon-rect" },
+            { id: 4, classes: "shape", img: "circle", shape: "circle", icon: "icon-circle" },
+            { id: 5, classes: "shape", img: "triangle", shape: "triangle-up", icon: "icon-triangle" },
             ],
             shapeStorage: [],
             mouseDown: false,
@@ -50,7 +50,8 @@ class PresentationSpace extends React.Component {
                         {/* have the hright of classes by ceiling of totalNum/2 */}
                         {this.state.shapeArray.map(item =>
                             <div key={item.id} className={item.classes} id={item.shape}
-                                onClick={this.addShape}>{item.img}</div>
+                                onClick={this.addShape}><div className={`icon-container`}>
+                                    <div className={`${item.icon}`}></div></div></div>
                         )}
                     </div>
                     <div id="object-selector-fill" />
@@ -61,7 +62,7 @@ class PresentationSpace extends React.Component {
 
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
