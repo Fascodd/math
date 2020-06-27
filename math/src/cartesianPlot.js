@@ -31,7 +31,7 @@ class CartensianPlot extends React.Component {
         const gcH = getHeight(graphContainter);
         canvas_plot.style.position = 'absolute';
         //Center top and left of graph container
-        graphContainter.style.left = `${graphContainter.getBoundingClientRect().left + diff(dsWrapperH, gcH) / 2}px`
+        graphContainter.style.left = `${graphContainter.getBoundingClientRect().left + diff(dsWrapperW, gcW) / 2}px`
         graphContainter.style.top = `${graphContainter.getBoundingClientRect().top + diff(dsWrapperH, gcH) / 2}px`
         // -- end of centering
         graphContainter.appendChild(canvas_plot);

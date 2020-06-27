@@ -4,7 +4,7 @@ class PresentationSpace extends React.Component {
     constructor() {
         super();
         this.state = {
-            shapeArray: [{ id: 1, classes: "shape", img: "parallelogram", shape: "parallelogram", },
+            shapeArray: [{ id: 1, classes: "shape", img: '', shape: "parallelogram", },
             { id: 2, classes: "shape", img: "square", shape: "square", icon: "icon-sq" },
             { id: 3, classes: "shape", img: "rectangle", shape: "rectangle", icon: "icon-rect" },
             { id: 4, classes: "shape", img: "circle", shape: "circle", icon: "icon-circle" },
@@ -50,8 +50,9 @@ class PresentationSpace extends React.Component {
                         {/* have the hright of classes by ceiling of totalNum/2 */}
                         {this.state.shapeArray.map(item =>
                             <div key={item.id} className={item.classes} id={item.shape}
-                                onClick={this.addShape}><div className={`icon-container`}>
-                                    <div className={`${item.icon}`}></div></div></div>
+                                onClick={this.addShape}><p className="shape-txt">{item.shape}</p>
+
+                            </div>
                         )}
                     </div>
                     <div id="object-selector-fill" />
